@@ -1,7 +1,9 @@
 <script>
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
+import AppContent from './components/AppContent.vue';
 import { store } from './store';
+
 
 export default {
   data() {
@@ -20,6 +22,7 @@ export default {
         }
       }).then(res => {
         console.log(res.data.results);
+        store.moviesArray = res.data.results;
       });
     }
   },
@@ -28,12 +31,15 @@ export default {
     this.fetchMovies();
   },
 
-  components: { AppHeader }
+  components: { AppHeader, AppContent }
 }
 </script>
 
 <template>
   <AppHeader @doSearch="fetchMovies" />
+  <AppContent />
 </template>
 
-<style scoped></style>
+<style lang="scss">
+@use './style/general.scss';
+</style>
