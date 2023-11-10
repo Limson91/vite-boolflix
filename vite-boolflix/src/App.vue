@@ -2,7 +2,6 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import { store } from './store';
-import AppHeader from './components/AppHeader.vue';
 
 export default {
   data() {
@@ -11,6 +10,7 @@ export default {
       query: 'Ritorno al futuro'
     };
   },
+
   methods: {
     fetchMovies() {
       axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -23,15 +23,17 @@ export default {
       });
     }
   },
+
   created() {
     this.fetchMovies();
   },
+
   components: { AppHeader }
 }
 </script>
 
 <template>
-  <AppHeader @doSearch="searchTitle" />
+  <AppHeader @doSearch="fetchMovies" />
 </template>
 
 <style scoped></style>
