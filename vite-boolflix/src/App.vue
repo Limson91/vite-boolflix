@@ -1,5 +1,33 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import axios from 'axios';
+import AppHeader from './components/AppHeader.vue';
+import { store } from './store';
+
+export default {
+  data() {
+    return {
+      api_key: '51194c244fcf78d6ef455b6b6578df95',
+      query: 'Ritorno al futuro'
+    }
+  },
+
+  methods: {
+    fetchMovies() {
+      axios.get('https://api.themoviedb.org/3/search/movie', {
+        params: {
+          api_key: this.api_key,
+          query: this.query
+        }
+      }).then(res => {
+        console.log(res.data.results);
+      })
+    }
+  },
+
+  created() {
+    this.fetchMovies()
+  }
+}
 </script>
 
 <template>
@@ -21,9 +49,11 @@ import HelloWorld from './components/HelloWorld.vue'
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
