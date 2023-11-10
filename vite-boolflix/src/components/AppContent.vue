@@ -1,7 +1,6 @@
 <script>
 import { store } from '../store';
 import Cards from './Cards.vue';
-import Cards from './Cards.vue';
 
 export default {
     data() {
