@@ -18,7 +18,7 @@ components: { Cards }
     <div class="container" v-show="store.moviesArray.length > 0">
         <div class="row">
             <div class="col-4" v-for="movie in store.moviesArray">
-                <Cards :movie="movie" />
+                <Cards :item="movie" />
             </div>
         </div>
     </div>

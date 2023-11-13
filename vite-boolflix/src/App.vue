@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       api_key: '51194c244fcf78d6ef455b6b6578df95',
-      query: 'Ritorno al futuro'
+      query: 'Star Wars'
     };
   },
 

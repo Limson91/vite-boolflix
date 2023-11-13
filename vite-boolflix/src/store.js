@@ -4,5 +4,14 @@ export const store = reactive(
     {
         searchString: '',
         moviesArray: [],
+        flags: {
+            de: '/germany.webp',
+            it: '/italy.webp',
+            es: '/spain.png',
+            en: '/uk.webp',
+            fr: '/france.png',
+            ja: '/japan.png',
+        },
+
     }
 )

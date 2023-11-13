@@ -19,7 +19,7 @@ export default {
 <template>
     <div class="container">
         <div class="searchbar">
-            <input type="text" v-model="store.searchString">
+            <input type="text" placeholder="Movie or series title..." v-model="store.searchString">
             <button @click="searchCall">Search!</button>
         </div>
     </div>
