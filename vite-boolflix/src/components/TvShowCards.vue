@@ -16,6 +16,11 @@ export default {
         flags() {
             return this.store.flags[item.original_language]
         }
+    },
+
+    posterPath() {
+        if (this.show.poster_path != null) return `https://image.tmdb.org/t/p/w154${this.show.poster_path}`
+        else return ''
     }
 }
 </script>
@@ -32,6 +37,7 @@ export default {
             </li>
             <li>Vote: {{ (show.vote_average).toFixed(1) }}</li>
         </ul>
+        <img :src="posterPath">
     </div>
 </template>
 
