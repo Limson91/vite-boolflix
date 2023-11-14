@@ -8,27 +8,36 @@ import { store } from './store';
 export default {
   data() {
     return {
+      store: store,
       api_key: '51194c244fcf78d6ef455b6b6578df95',
       query: 'Star Wars'
     };
   },
 
   methods: {
-    fetchMovies() {
+    searchTitle() {
       axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
           api_key: this.api_key,
           query: this.query
         }
       }).then(res => {
-        console.log(res.data.results);
-        store.moviesArray = res.data.results;
+        this.store.moviesArray = res.data.results;
       });
+
+      axios.get('https://api.themoviedb.org/3/search/tv', {
+        params: {
+          api_key: this.api_key,
+          query: this.query
+        }
+      }).then(res => {
+        this.store.tvShowsArray = res.data.results;
+      })
     }
   },
 
   created() {
-    this.fetchMovies();
+    this.searchTitle();
   },
 
   components: { AppHeader, AppContent }
@@ -36,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @doSearch="fetchMovies" />
+  <AppHeader @doSearch="searchTitle" />
   <AppContent />
 </template>
 

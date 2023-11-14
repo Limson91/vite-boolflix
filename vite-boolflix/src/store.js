@@ -4,6 +4,7 @@ export const store = reactive(
     {
         searchString: '',
         moviesArray: [],
+        tvShowsArray: [],
         flags: {
             de: '/germany.webp',
             it: '/italy.webp',
