@@ -4,7 +4,8 @@ import { store } from '../store';
 export default {
     data() {
         return {
-            store: store
+            store: store,
+            stars: [['far', 'star'], ['fas', 'star']]
         }
     },
 
@@ -15,13 +16,29 @@ export default {
     computed: {
         flags() {
             return this.store.flags[item.original_language]
+        },
+
+        posterPath() {
+            if (this.show.poster_path != null) return `https://image.tmdb.org/t/p/w154${this.show.poster_path}`
+            else return ''
+        },
+
+        voteStars() {
+            return Math.ceil(parseInt((this.show.vote_average) / 2))
+        },
+
+        voteArray() {
+            const starsArray = []
+            for (let i = 0; i < 5; i++) {
+                if ((i + 1) < this.voteStars) {
+                    starsArray.push('fa-solid')
+                } else {
+                    starsArray.push('fa-regular')
+                }
+            } return starsArray;
         }
     },
 
-    posterPath() {
-        if (this.show.poster_path != null) return `https://image.tmdb.org/t/p/w154${this.show.poster_path}`
-        else return ''
-    }
 }
 </script>
 
@@ -35,7 +52,9 @@ export default {
                     :src="store.flags[show.original_language]" alt="">
                 <p v-else>{{ show.original_language }}</p>
             </li>
-            <li>Vote: {{ (show.vote_average).toFixed(1) }}</li>
+            <li class="stars">
+                <font-awesome-icon v-for="star in voteArray" :icon="`${star} fa-star`" />
+            </li>
         </ul>
         <img :src="posterPath">
     </div>
